@@ -1,0 +1,3 @@
+: DRAWSQARE ( size -- square sizexsize ) DUP 0 DO DUP 0 DO ." # " LOOP CR LOOP . ;
+
+5 DRAWSQARE

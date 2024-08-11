@@ -1,0 +1,7 @@
+1 2 SWAP
+CR
+1 2 3 ROT . . .
+CR
+1 2 3 4 2SWAP . . . .
+CR
+1 2 3 OVER . . . .

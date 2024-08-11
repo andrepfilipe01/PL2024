@@ -1,0 +1,32 @@
+VARIABLE a
+
+: imprimira
+    a @ . 
+;
+
+
+: atualizara ( novovalor -- )
+    dup a ! 
+;
+
+
+: main
+    0 a !
+
+    0 5 DO
+        i . 
+        
+        1 2 % 0 = IF
+            ."  é par"
+        ELSE
+            ."  é ímpar"
+        THEN
+        cr  
+    LOOP
+
+    10 atualizara
+    
+    imprimira
+;
+
+main

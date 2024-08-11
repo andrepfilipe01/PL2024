@@ -1,0 +1,21 @@
+
+T = {NUM, COMMENT, FUNC_NAME}
+literals = "+-*/%:;$"
+
+
+Expressao -> ExpAritmetica
+           | Funcao
+           | COMMENT
+           
+
+Funcao -> : FUNC_NAME Expressao ;
+
+ExpAritmetica -> ExpAritmetica Elem
+            | ε
+
+Elem -> NUM
+        | +
+        | -
+        | *
+        | /
+        | %

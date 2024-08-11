@@ -1,0 +1,5 @@
+10 2 DO
+    i 2 MOD 0 = IF    
+        i .           
+    THEN
+LOOP

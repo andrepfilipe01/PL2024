@@ -1,0 +1,211 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    LPAR
+    RPAR
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> expression endmarker
+Rule 2     statement -> statement expression
+Rule 3     endmarker -> DOLLAR
+Rule 4     expression -> expression expression operator
+Rule 5     expression -> NUMBER
+Rule 6     operator -> PLUS
+Rule 7     operator -> MINUS
+Rule 8     operator -> TIMES
+Rule 9     operator -> DIVIDE
+
+Terminals, with rules where they appear
+
+DIVIDE               : 9
+DOLLAR               : 3
+LPAR                 : 
+MINUS                : 7
+NUMBER               : 5
+PLUS                 : 6
+RPAR                 : 
+TIMES                : 8
+error                : 
+
+Nonterminals, with rules where they appear
+
+endmarker            : 1
+expression           : 1 2 4 4
+operator             : 4
+statement            : 2 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . expression endmarker
+    (2) statement -> . statement expression
+    (4) expression -> . expression expression operator
+    (5) expression -> . NUMBER
+
+    NUMBER          shift and go to state 3
+
+    statement                      shift and go to state 1
+    expression                     shift and go to state 2
+
+state 1
+
+    (0) S' -> statement .
+    (2) statement -> statement . expression
+    (4) expression -> . expression expression operator
+    (5) expression -> . NUMBER
+
+    NUMBER          shift and go to state 3
+
+    expression                     shift and go to state 4
+
+state 2
+
+    (1) statement -> expression . endmarker
+    (4) expression -> expression . expression operator
+    (3) endmarker -> . DOLLAR
+    (4) expression -> . expression expression operator
+    (5) expression -> . NUMBER
+
+    DOLLAR          shift and go to state 7
+    NUMBER          shift and go to state 3
+
+    expression                     shift and go to state 5
+    endmarker                      shift and go to state 6
+
+state 3
+
+    (5) expression -> NUMBER .
+
+    DOLLAR          reduce using rule 5 (expression -> NUMBER .)
+    NUMBER          reduce using rule 5 (expression -> NUMBER .)
+    $end            reduce using rule 5 (expression -> NUMBER .)
+    PLUS            reduce using rule 5 (expression -> NUMBER .)
+    MINUS           reduce using rule 5 (expression -> NUMBER .)
+    TIMES           reduce using rule 5 (expression -> NUMBER .)
+    DIVIDE          reduce using rule 5 (expression -> NUMBER .)
+
+
+state 4
+
+    (2) statement -> statement expression .
+    (4) expression -> expression . expression operator
+    (4) expression -> . expression expression operator
+    (5) expression -> . NUMBER
+
+  ! shift/reduce conflict for NUMBER resolved as shift
+    $end            reduce using rule 2 (statement -> statement expression .)
+    NUMBER          shift and go to state 3
+
+  ! NUMBER          [ reduce using rule 2 (statement -> statement expression .) ]
+
+    expression                     shift and go to state 5
+
+state 5
+
+    (4) expression -> expression expression . operator
+    (4) expression -> expression . expression operator
+    (6) operator -> . PLUS
+    (7) operator -> . MINUS
+    (8) operator -> . TIMES
+    (9) operator -> . DIVIDE
+    (4) expression -> . expression expression operator
+    (5) expression -> . NUMBER
+
+    PLUS            shift and go to state 9
+    MINUS           shift and go to state 10
+    TIMES           shift and go to state 11
+    DIVIDE          shift and go to state 12
+    NUMBER          shift and go to state 3
+
+    expression                     shift and go to state 5
+    operator                       shift and go to state 8
+
+state 6
+
+    (1) statement -> expression endmarker .
+
+    NUMBER          reduce using rule 1 (statement -> expression endmarker .)
+    $end            reduce using rule 1 (statement -> expression endmarker .)
+
+
+state 7
+
+    (3) endmarker -> DOLLAR .
+
+    NUMBER          reduce using rule 3 (endmarker -> DOLLAR .)
+    $end            reduce using rule 3 (endmarker -> DOLLAR .)
+
+
+state 8
+
+    (4) expression -> expression expression operator .
+
+    DOLLAR          reduce using rule 4 (expression -> expression expression operator .)
+    NUMBER          reduce using rule 4 (expression -> expression expression operator .)
+    $end            reduce using rule 4 (expression -> expression expression operator .)
+    PLUS            reduce using rule 4 (expression -> expression expression operator .)
+    MINUS           reduce using rule 4 (expression -> expression expression operator .)
+    TIMES           reduce using rule 4 (expression -> expression expression operator .)
+    DIVIDE          reduce using rule 4 (expression -> expression expression operator .)
+
+
+state 9
+
+    (6) operator -> PLUS .
+
+    DOLLAR          reduce using rule 6 (operator -> PLUS .)
+    NUMBER          reduce using rule 6 (operator -> PLUS .)
+    $end            reduce using rule 6 (operator -> PLUS .)
+    PLUS            reduce using rule 6 (operator -> PLUS .)
+    MINUS           reduce using rule 6 (operator -> PLUS .)
+    TIMES           reduce using rule 6 (operator -> PLUS .)
+    DIVIDE          reduce using rule 6 (operator -> PLUS .)
+
+
+state 10
+
+    (7) operator -> MINUS .
+
+    DOLLAR          reduce using rule 7 (operator -> MINUS .)
+    NUMBER          reduce using rule 7 (operator -> MINUS .)
+    $end            reduce using rule 7 (operator -> MINUS .)
+    PLUS            reduce using rule 7 (operator -> MINUS .)
+    MINUS           reduce using rule 7 (operator -> MINUS .)
+    TIMES           reduce using rule 7 (operator -> MINUS .)
+    DIVIDE          reduce using rule 7 (operator -> MINUS .)
+
+
+state 11
+
+    (8) operator -> TIMES .
+
+    DOLLAR          reduce using rule 8 (operator -> TIMES .)
+    NUMBER          reduce using rule 8 (operator -> TIMES .)
+    $end            reduce using rule 8 (operator -> TIMES .)
+    PLUS            reduce using rule 8 (operator -> TIMES .)
+    MINUS           reduce using rule 8 (operator -> TIMES .)
+    TIMES           reduce using rule 8 (operator -> TIMES .)
+    DIVIDE          reduce using rule 8 (operator -> TIMES .)
+
+
+state 12
+
+    (9) operator -> DIVIDE .
+
+    DOLLAR          reduce using rule 9 (operator -> DIVIDE .)
+    NUMBER          reduce using rule 9 (operator -> DIVIDE .)
+    $end            reduce using rule 9 (operator -> DIVIDE .)
+    PLUS            reduce using rule 9 (operator -> DIVIDE .)
+    MINUS           reduce using rule 9 (operator -> DIVIDE .)
+    TIMES           reduce using rule 9 (operator -> DIVIDE .)
+    DIVIDE          reduce using rule 9 (operator -> DIVIDE .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for NUMBER in state 4 resolved as shift
